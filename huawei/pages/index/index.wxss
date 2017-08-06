@@ -1,0 +1,26 @@
+.kind-list-folder{
+  width: 48rpx;
+  height: 48rpx;
+  vertical-align: top;
+  margin-right: 10px;
+}
+.index-hd{
+  height: 320rpx;
+  background: rgba(0, 0, 0, 0.8);
+  padding-top: 80rpx;
+  margin-bottom: 20rpx;
+}
+.index-desc{
+  text-align: center;
+}
+.index-hd-add{
+  width: 58rpx;
+  height: 58rpx;
+  display: block;
+  margin: 0 auto;  
+  margin-top: 20rpx;
+}
+.kind-list-delete{
+  display: inline-block;
+  background: red;
+}
