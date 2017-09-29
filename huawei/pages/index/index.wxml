@@ -1,33 +1,46 @@
-  <view class="index">
+<view class="index">
   <view class="index-hd">
     <view class="index-desc">点击＋号创建文件夹，也可进入文件夹查看文件</view>
-    <image bindtap="addFloder" class="index-hd-add" src="../../image/plus.png"></image>
+    <image  bindtap="powerDrawer" data-statu="open"  class="index-hd-add" src="../../image/plus.png"></image>
   </view>
   <view class="index-bd">
-    <view class="kind-list">
-      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-        <view bindtouchmove='setTool' class="kind-list-item">
-          <view  class="kind-list-item-hd {{item.open ? 'kind-list-item-hd-show' : ''}}">
-          <view class="kind-list-text" bindtap='enterFolder'>
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
+      <view class="kind-list-item-hd">
+        <view class="kind-list-text" bindtap='enterFolder'>
           <image class="kind-list-folder" src="../../image/folder.png"></image>
           {{item.name}}</view>
-          <view class='kind-list-delete'>删除</view>
-          <view class='kind-list-rename'>更名</view>
-          <view class='kind-list-upload'>上传</view>
-         
-          </view>
-          <view class="kind-list-item-bd {{item.open ? 'kind-list-item-bd-show' : ''}}">
-            <view class="navigator-box {{item.open ? 'navigator-box-show' : ''}}">
-              <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
-                <navigator url="pages/{{page.url}}" class="navigator">
-                  <view class="navigator-text">{{page.zh}}</view>
-                  <view class="navigator-arrow"></view>
-                </navigator>
-              </block>
-            </view>
-          </view>
-        </view>
-      </block>
+      </view>
+      <view class="del">
+       <view class='kind-list-rename'>更名</view>
+        <view class='kind-list-upload' >上传</view>
+       <view class='kind-list-rename' catchtap="rename" data-index="{{index}}" class='kind-list-delete'>删除</view>
+      </view>
     </view>
   </view>
+</view>
+
+  
+<!--mask-->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view> 
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}"> 
+  
+ <!--drawer content-->
+  <form bindsubmit="reg">
+ <view class="drawer_title">新建文件夹</view> 
+ <view class="drawer_content"> 
+ <view class="top grid"> 
+
+  <label class="title col-0">文件夹名称</label> 
+  <input bindinput="onnameinput" class="input_base input_h30 col-1" name="rName" value="2017-10-1"></input> 
+ </view> 
+ <view class="top grid"> 
+  <label class="title col-0">描述</label> 
+  <input class="input_base input_h30 col-1" name="mobile" value="照片"></input> 
+ </view> 
+ </view> 
+ <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view> 
+ <view class="btn_no" bindtap="powerDrawer" data-statu="close">取消</view> 
+ </form>
 </view>

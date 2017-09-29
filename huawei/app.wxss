@@ -9,7 +9,7 @@
   box-sizing: border-box;
 } 
 .index-bd {
-  padding: 0 30rpx 40rpx;
+  width: 100%;
 }
 .index-ft {
   padding-bottom: 20rpx;
@@ -80,14 +80,12 @@
   margin-top: -8rpx;
   right: 28rpx;
 }
-
-
 .kind-list-item {
-  margin: 20rpx 0;
   background-color: #FFFFFF;
   border-radius: 4rpx;
+  border-top: 1px solid #e5e5e5;
+  width: 100%;
   overflow: hidden;
-  border: 1px solid #e5e5e5;
 }
 .kind-list-item:first-child {
   margin-top: 0;
@@ -100,13 +98,7 @@
   width: 60rpx;
   height: 60rpx;
 }
-.kind-list-item-hd {
-  padding: 30rpx;
-  display: flex;
-  align-items: center;
 
-  transition: opacity .3s;
-}
 .kind-list-item-hd-show {
   opacity: .2;
 }

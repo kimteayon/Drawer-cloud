@@ -1,11 +1,16 @@
 <view class="catalog-list">
-<view class='catalog-item-plus'>
+  <view class='catalog-item-plus' bindtap="chooseImage">
     <image class="catalog-plus-img" src="../../image/plus.png"></image>
   </view>
+  <block wx:for="{{imageList}}" wx:for-item="image">
+    <view class="catalog-item">
+      <image class="catalog-list-megia" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+    </view>
+  </block>
   <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-  <view class='catalog-item'>
-    <image class="catalog-list-megia" src="img/{{item.url}}.jpeg"></image>
-  </view>
-   
+    <view class='catalog-item'>
+      <image class="catalog-list-megia" src="img/{{item.url}}.jpeg"></image>
+    </view>
+
   </block>
 </view>
