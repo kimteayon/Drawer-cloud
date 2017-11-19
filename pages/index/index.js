@@ -8,10 +8,10 @@ Page({
   },
   powerDrawer: function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
-    this.util(currentStatu)
+    this.util(currentStatu,e)
 
   },
-  util: function (currentStatu) {
+  util: function (currentStatu,e) {
     /* 动画部分 */
     // 第1步：创建动画实例 
     var animation = wx.createAnimation({
@@ -54,6 +54,21 @@ Page({
     if (currentStatu == "open") {
       this.setData(
         {
+          wintitle:'新建文件夹',
+          fileRename:'新建文件夹',
+          fileDec:'照片',
+          showModalStatus: true
+        }
+      );
+    }
+    // 显示 
+    if (currentStatu == "rename") {
+      var renameIndex = e.currentTarget.dataset.index;
+      this.setData(
+        {
+          wintitle: '修改文件夹',
+          fileRename: this.data.items[renameIndex].name,
+          fileDec: this.data.items[renameIndex].describe,
           showModalStatus: true
         }
       );
@@ -72,6 +87,7 @@ onLoad: function () {
     this.data.items.push({
       id: "201709" + i,
       name: "2017-09-" + i,
+      describe:"我刚刚拍的照片哦",
       content: i + " 向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦",
       isTouchMove: false //默认全隐藏删除
     })

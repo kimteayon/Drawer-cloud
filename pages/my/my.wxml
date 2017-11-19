@@ -1,0 +1,32 @@
+ <view class="index">
+ <view class="index-hd">
+   
+    <view class="userinfo-image">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    </view>
+      
+      <view class="userinfo-nickname">{{userInfo.nickName}}</view>
+      <view class="userinfo-total">
+        <view class="total-num total-border">
+          <view class="num">
+          {{num}}
+          </view>
+          <view class='name'>
+          相册
+          </view>
+        </view>
+        <view class='total-num'>
+        <view class='num'>
+        {{fnum}}
+        </view>
+        <view class='name'>
+        照片
+        </view>
+        </view>
+        <view class="rongliang">容量使用1GB／50GB</view>
+        <view class="prosent"></view>
+       
+      </view>
+  </view>
+   <view class="index-desc">流量统计，未上线</view>
+</view>

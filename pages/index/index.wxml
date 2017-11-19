@@ -1,0 +1,56 @@
+<view class="index">
+  <view class="index-hd">
+    <view class="index-desc">点击＋号创建文件夹，也可进入文件夹查看文件</view>
+    <image bindtap="powerDrawer" data-statu="open" class="index-hd-add" src="../../image/plus.png"></image>
+
+    <view class='index-desc create'>创建</view>
+
+  </view>
+  <view class="index-bd">
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
+      <view class="kind-list-item-hd">
+
+        <view class="kind-list-text" bindtap='enterFolder'>
+
+
+          <image class="kind-list-folder" src="../../image/folder.png"></image>
+
+          <view class='kind-list-texts'>{{item.name}}</view>
+          <view class='kind-list-describe'>{{item.describe}}</view>
+        </view>
+
+      </view>
+      <view class="del">
+        <view class='kind-list-rename' data-index="{{index}}" bindtap="powerDrawer" data-statu="rename">更名</view>
+        <view class='kind-list-upload'>上传</view>
+        <view class='kind-list-rename' catchtap="rename" data-index="{{index}}" class='kind-list-delete'>删除</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!--mask-->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+
+  <!--drawer content-->
+  <form bindsubmit="reg">
+    <view class="drawer_title">{{wintitle}}</view>
+    <view class="drawer_content">
+      <view class="top grid">
+
+        <label class="title col-0">文件夹名称</label>
+        <input bindinput="onnameinput" class="input_base input_h30 col-1" name="rName" value="{{fileRename}}"></input>
+      </view>
+      <view class="top grid">
+        <label class="title col-0">描述</label>
+        <input class="input_base input_h30 col-1" name="mobile" value="{{fileDec}}"></input>
+      </view>
+    </view>
+    <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>
+    <view class="btn_no" bindtap="powerDrawer" data-statu="close">取消</view>
+  </form>
+</view>
