@@ -1,0 +1,16 @@
+<view class="ui-list-section">
+   <checkbox-group bindchange="checkboxChange">
+      <view wx:for="{{memberinfo}}" wx:key="" class="ui-list-member">
+        <checkbox value="{{item.nickName}}" checked="{{item.checked}}"/>{{item.value}}
+        <image class="ui-list-img" src="{{item.avatarUrl}}"></image>
+        <text class="ui-list-nickName">{{item.nickName}}</text>
+      </view>
+   </checkbox-group>
+</view>
+
+<view class="btn">
+  <view class='bottom-btn-small btn-red' bindtap="startpush">确认删除</view>
+</view>
+<loading hidden="{{hidden}}">
+  创建中...
+</loading>

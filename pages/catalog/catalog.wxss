@@ -1,32 +1,263 @@
-/* pages/catalog/catalog.wxss */
-.catalog-list-megia{
+.catalog-list-megia {
   display: inline-flex;
   width: 100%;
   height: 100%;
 }
-.catalog-item{
+
+.opreat-btn {
+  margin-left: 20px;
+}
+
+.catalog-item {
   width: 25%;
   height: 168rpx;
   display: inline-flex;
   border: 1px solid #fff;
   box-sizing: border-box;
-
+  position: relative;
 }
-.catalog-plus-img{
+
+.catalog-plus-img {
   width: 68rpx;
   height: 68rpx;
   margin: auto auto;
 }
-.catalog-item-plus{
+
+.catalog-item-plus {
   width: 25%;
   height: 168rpx;
   display: inline-flex;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
 }
-.catalog-list{
+
+.catalog-list {
   width: 100%;
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   align-content: flex-start;
+}
+
+.catalog-banner-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.catalog-banner {
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.catalog-banner-name {
+  color: #fff;
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+}
+
+.catalog-banner-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 20px;
+  top: 20px;
+}
+
+.operationBar {
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  line-height: 30px;
+}
+
+.catalog-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  text-align: left;
+}
+
+.ui-timeaxis-info {
+  text-align: left;
+  padding: 3px 20px;
+  height: 20px;
+}
+
+.ui-timeaxis-url {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.ui-timeaxis-nickname {
+  color: #333;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.ui-timeaxis-time {
+  color: #ccc;
+  font-size: 12px;
+  float: right;
+}
+
+.ui-timeaxis-imgcon {
+  margin: 10px auto;
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.ui-timeaxis-imgcon .ui-timeaxis-image-3:last-child {
+  border-right: none;
+}
+
+button {
+  color: #fff !important;
+  background: #333 !important;
+  font-size: 12px !important;
+}
+
+.catalog-share {
+  position: absolute;
+  bottom: 5px;
+  right: 20px;
+  border-radius: 5px;
+}
+
+.catalog-dynamics {
+  height: 48px;
+  width: 48px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+
+.ui-timeaxis-image-2 {
+  width: 50%;
+  height: 150px;
+  justify-conten: space-between;
+}
+
+.ui-timeaxis-image-1 {
+  width: 100%;
+  height: 150px;
+  justify-conten: space-between;
+}
+
+.ui-timeaxis-image {
+  display: inline-block;
+}
+
+.ui-img {
+  width: 100%;
+  height: 100%;
+}
+
+.ui-timeaxis-image-3 {
+  width: 33%;
+  height: 150px;
+  justify-conten: space-between;
+  border-right: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+.ui-timeaxis-todo {
+  float: right;
+  padding-right: 10px;
+}
+
+.ui-timeaxis-input {
+  width: 90%;
+  margin: 40px auto;
+}
+
+.catalog-add {
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  left: 50%;
+  bottom: 10px;
+}
+
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+
+.commodity_attr_box {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  padding-top: 20rpx;
+}
+
+.commodity {
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: nowrap;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.commodity-item {
+  text-align: center;
+  color: #333;
+  padding: 5px 5px;
+}
+
+.catalog-list-check {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+}
+
+.operation-text {
+  color: #39f;
+}
+.bottom-icon{
+  width: 40%;
+  height: 60px;
+}
+.commodity-download{
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 5px auto;
+}
+.commodity-del{
+  width:20px;
+  height: 24px;
+   display: block;
+  margin: 5px auto;
+}
+.commodity-text{
+  display: block;
 }

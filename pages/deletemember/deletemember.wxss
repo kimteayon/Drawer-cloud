@@ -1,0 +1,14 @@
+.ui-list-img{
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.ui-list-nickName{
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+}
+.ui-list-member{
+  padding: 5px 20px;
+  border-bottom:1px solid #ccc; 
+}

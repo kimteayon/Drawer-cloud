@@ -1,16 +1,63 @@
-<view class="catalog-list">
-  <view class='catalog-item-plus' bindtap="chooseImage">
-    <image class="catalog-plus-img" src="../../image/plus.png"></image>
+<view animation="{{animationData}}"  wx:if="{{!operation}}" class="catalog-banner">
+  <image class="catalog-banner-img" src="../../image/{{img}}"></image>
+  <text>{{}}</text>
+  <text class='catalog-banner-name'>{{name}}</text>
+  <view class='catalog-info'>
+    <image class="kind-list-folder" src="../../image/group.png"></image>
+    <text class="item-folder-text">{{member}}</text>
+    <image class="kind-list-folder" src="../../image/image.png"></image>
+    <text class="item-folder-text">{{imagenum}}</text>
   </view>
-  <block wx:for="{{imageList}}" wx:for-item="image">
-    <view class="catalog-item">
-      <image class="catalog-list-megia" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+  <view class="catalog-share">
+    <button size='mini' open-type="share">邀请成员</button>
+    <button size='mini' class="opreat-btn" bindtap="operationFn">选择</button>
+  </view>
+  <image class="catalog-banner-icon" bindtap="setup" src="../../image/fun.png"></image>
+</view>
+<view wx:if="{{_operation}}" class="catalog-operation-banner">
+  <view class="commodity">
+    <view wx:if="{{!checkall}}" bindtap="checkAll" class="commodity-item operation-text">
+      全选
     </view>
-  </block>
-  <block wx:for-items="{{list}}" wx:key="{{item.id}}">
-    <view class='catalog-item'>
-      <image class="catalog-list-megia" src="img/{{item.url}}.jpeg"></image>
+    <view wx:if="{{checkall}}" bindtap="cancleCheckAll" class="commodity-item operation-text">
+      取消全选
     </view>
+    <view wx:if="{{!checkedNum}}" class="commodity-item">
+      选择项目
+    </view>
+    <view wx:if="{{checkedNum}}" class="commodity-item">
+      已选择{{checkedNum}}张照片
+    </view>
+    <view bindtap="cancleCheck" class="commodity-item operation-text">
+      取消
+    </view>
+  </view>
+</view>
+<view>
+  <view class="catalog-list">
+    <block wx:for="{{imageList}}" wx:for-item="image" wx:for-index="idx" wx:key="">
+      <view class="catalog-item">
+        <image class="catalog-list-megia" src="{{image.url}}" data-src="{{image.url}}" data-index="{{idx}}" bindtap="checkImg"></image>
+        <image wx:if="{{image.checked}}" class="catalog-list-check" src="../../image/check.png"></image>
+      </view>
+    </block>
+  </view>
 
-  </block>
+</view>
+<view class="ui-bottom-fixed" wx:if="{{!operation}}">
+  <view class="catalog-dynamics" bindtap="dynamics">
+    <image class="catalog-list-megia" src="../../image/addbtn.png" data-src="{{image}}"></image>
+  </view>
+</view>
+<view animation="{{bottomAnimationData}}" class="commodity_attr_box bottom-commodity" wx:if="{{showModalStatus}}">
+  <view class="commodity"> 
+    <view class="commodity-item bottom-icon">
+      <image class="commodity-download" src="../../image/download.png"></image>
+      <text class="commodity-text">下载</text>  
+    </view>
+    <view class="commodity-item bottom-icon">
+    <image class="commodity-del" src="../../image/delete.png"></image>
+     <text class="commodity-text">删除</text>  
+    </view>
+  </view>
 </view>

@@ -1,3 +1,5 @@
+var HTTP = require('./servers.js');
+var config = require('./config.js');
 //app.js
 App({
   onLaunch: function () {
@@ -10,6 +12,13 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res);
+        HTTP.post(config.loginUrl,{js_code:res.code}).then((res)=>{
+          
+        },(err)=>{
+            console.log(err);
+        })
+
       }
     })
     // 获取用户信息

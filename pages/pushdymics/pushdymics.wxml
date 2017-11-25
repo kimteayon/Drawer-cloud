@@ -1,0 +1,17 @@
+
+<view class="catalog-list">
+  <view class='catalog-item-plus' bindtap="chooseImage">
+    <image class="catalog-plus-img" src="../../image/plus.png"></image>
+  </view>
+  <block wx:for="{{imageList}}" wx:for-item="image" wx:key="">
+    <view class="catalog-item">
+      <image class="catalog-list-megia" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+    </view>
+  </block>
+</view>
+<view class="btn">
+  <view class='bottom-btn-small' bindtap="startpush">开始上传</view>
+</view>
+<loading hidden="{{hidden}}">
+  上传中...
+</loading>

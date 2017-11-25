@@ -1,156 +1,67 @@
+var HTTP = require('../../servers.js');
+var config = require('../../config.js');
 var app = getApp()
 Page({
   data: {
     items: [],
     startX: 0, //开始坐标
     startY: 0,
-    showModalStatus: false
+    showModalStatus: false,
+    hidden: true
   },
   powerDrawer: function (e) {
     var currentStatu = e.currentTarget.dataset.statu;
-    this.util(currentStatu,e)
-
+    this.util(currentStatu, e)
   },
-  util: function (currentStatu,e) {
-    /* 动画部分 */
-    // 第1步：创建动画实例 
-    var animation = wx.createAnimation({
-      duration: 200, //动画时长 
-      timingFunction: "linear", //线性 
-      delay: 0 //0则不延迟 
-    });
-
-    // 第2步：这个动画实例赋给当前的动画实例 
-    this.animation = animation;
-
-    // 第3步：执行第一组动画 
-    animation.opacity(0).rotateX(-100).step();
-
-    // 第4步：导出动画对象赋给数据对象储存 
-    this.setData({
-      animationData: animation.export()
+  newfolder: function (e) {
+    wx.navigateTo({
+      url: '../new/new'
     })
-
-    // 第5步：设置定时器到指定时候后，执行第二组动画 
-    setTimeout(function () {
-      // 执行第二组动画 
-      animation.opacity(1).rotateX(0).step();
-      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象 
-      this.setData({
-        animationData: animation
-      })
-
-      //关闭 
-      if (currentStatu == "close") {
-        this.setData(
-          {
-            showModalStatus: false
-          }
-        );
-      }
-    }.bind(this), 200)
-
-    // 显示 
-    if (currentStatu == "open") {
-      this.setData(
-        {
-          wintitle:'新建文件夹',
-          fileRename:'新建文件夹',
-          fileDec:'照片',
-          showModalStatus: true
-        }
-      );
-    }
-    // 显示 
-    if (currentStatu == "rename") {
-      var renameIndex = e.currentTarget.dataset.index;
-      this.setData(
-        {
-          wintitle: '修改文件夹',
-          fileRename: this.data.items[renameIndex].name,
-          fileDec: this.data.items[renameIndex].describe,
-          showModalStatus: true
-        }
-      );
-    }
   },
-  onnameinput(e){
-    console.log(e);
+  onPullDownRefresh: function (e) {
+    this.setData({
+      hidden: false
+    })
   },
   enterFolder: function (e) {
     wx.navigateTo({
-      url: '../catalog/catalog'
+      url: '../catalog/catalog?id=' + e.currentTarget.dataset.statu.id + '&name=' + e.currentTarget.dataset.statu.name + '&img=' + e.currentTarget.dataset.statu.img + '&member=' + e.currentTarget.dataset.statu.member + '&imagenum=' + e.currentTarget.dataset.statu.imagenum
     })
   },
-onLoad: function () {
-  for (var i = 1; i < 11; i++) {
-    this.data.items.push({
-      id: "201709" + i,
-      name: "2017-09-" + i,
-      describe:"我刚刚拍的照片哦",
-      content: i + " 向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦",
-      isTouchMove: false //默认全隐藏删除
-    })
-  }
-  this.setData({
-    items: this.data.items
-  })
-},
-//手指触摸动作开始 记录起点X坐标
-touchstart: function (e) {
-  //开始触摸时 重置所有删除
-  this.data.items.forEach(function (v, i) {
-    if (v.isTouchMove)//只操作为true的
-      v.isTouchMove = false;
-  })
-  this.setData({
-    startX: e.changedTouches[0].clientX,
-    startY: e.changedTouches[0].clientY,
-    items: this.data.items
-  })
-},
-//滑动事件处理
-touchmove: function (e) {
-  var that = this,
-    index = e.currentTarget.dataset.index,//当前索引
-    startX = that.data.startX,//开始X坐标
-    startY = that.data.startY,//开始Y坐标
-    touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
-    touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
-    //获取滑动角度
-    angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-  that.data.items.forEach(function (v, i) {
-    v.isTouchMove = false
-    //滑动超过30度角 return
-    if (Math.abs(angle) > 30) return;
-    if (i == index) {
-      if (touchMoveX > startX) //右滑
-        v.isTouchMove = false
-      else //左滑
-        v.isTouchMove = true
+  onLoad: function () {
+    var items = [];
+    HTTP.get(config.creatFolder).then((res) => {
+      res.forEach((d, i) => {
+        items.push({ id: d._id, name: d.name, img: '3.jpg', imagenum: 10, member: 2 })
+      })
+      this.setData({
+        items: items
+      })
+    }, () => { })
+    this.data.items = [
+      { id: 1, name: '圣诞狂欢', img: '3.jpg', imagenum: 10, member: 2 },
+      { id: 2, name: '旅行', img: '2.jpg', imagenum: 23, member: 4 },
+      { id: 3, name: '体育', img: '1.jpg', imagenum: 15, member: 6 },
+      { id: 4, name: '校园', img: '4.jpg', imagenum: 210, member: 12 }
+    ]
+    app.globalData.items = this.data.items;
+
+  },
+  onShareAppMessage: function (res) {
+    var that = this;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
     }
-  })
-  //更新数据
-  that.setData({
-    items: that.data.items
-  })
-},
-/**
- * 计算滑动角度
- * @param {Object} start 起点坐标
- * @param {Object} end 终点坐标
- */
-angle: function (start, end) {
-  var _X = end.X - start.X,
-    _Y = end.Y - start.Y
-  //返回角度 /Math.atan()返回数字的反正切值
-  return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
-},
-//删除事件
-del: function (e) {
-  this.data.items.splice(e.currentTarget.dataset.index, 1)
-  this.setData({
-    items: this.data.items
-  })
-}
+    return {
+      title: app.globalData.userInfo.nickName + '邀请你加入抽屉云',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  }
 })
