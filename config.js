@@ -1,16 +1,17 @@
 /**
  * 小程序配置文件
  */
-var host = "http://192.168.2.203:3000/api"
-var staticHost = "http://192.168.2.203:3000/"
+var host = "https://www.xiaoyunsite.com/api"
+var staticHost = "https://www.xiaoyunsite.com/"
 var config = {
 
   // 下面的地址配合云端 Server 工作
   host,
   staticHost,
+  statistics: `${host}/statistics`,
   // 登录地址，用于建立会话
   loginUrl: `${host}/login`,
-
+  checkSession: `${host}/checkSession`,
   //文件夹
   creatFolder: `${host}/folders`,
 

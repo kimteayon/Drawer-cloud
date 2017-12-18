@@ -1,20 +1,23 @@
-<view animation="{{animationData}}"  wx:if="{{!operation}}" class="catalog-banner">
-  <image class="catalog-banner-img" src="../../image/{{img}}"></image>
-  <text>{{}}</text>
+<view animation="{{animationData}}" wx:if="{{!operation && stutas}}" class="catalog-banner">
+  <image mode="aspectFill" class="catalog-banner-img" src="{{img}}"></image>
+  <view class='index-mask'>
+  </view>
   <text class='catalog-banner-name'>{{name}}</text>
   <view class='catalog-info'>
-    <image class="kind-list-folder" src="../../image/group.png"></image>
-    <text class="item-folder-text">{{member}}</text>
     <image class="kind-list-folder" src="../../image/image.png"></image>
     <text class="item-folder-text">{{imagenum}}</text>
   </view>
-  <view class="catalog-share">
-    <button size='mini' open-type="share">邀请成员</button>
-    <button size='mini' class="opreat-btn" bindtap="operationFn">选择</button>
-  </view>
-  <image class="catalog-banner-icon" bindtap="setup" src="../../image/fun.png"></image>
+  <button size='mini' wx:if="{{authority}}" open-type="share">
+    <image class="catalog-share-icon" wx:if="{{authority}}" src="../../image/share.png"></image>
+  </button>
+  <image class="catalog-operation-icon" bindtap="operationFn" wx:if="{{authority}}" src="../../image/duoxuan.png"></image>
+  <image class="catalog-delete-icon" wx:if="{{authority}}" bindtap="deleteAlbum" src="../../image/deletefolder.png"></image>
+  <button size='mini' class="catalog-share" wx:if="{{!authority}}" open-type="share">
+    <image class="catalog-share-icon" wx:if="{{!authority}}" src="../../image/share.png"></image>
+  </button>
+  <image class="catalog-delete-icon" wx:if="{{!authority}}" bindtap="operationFn" src="../../image/duoxuan.png"></image>
 </view>
-<view wx:if="{{_operation}}" class="catalog-operation-banner">
+<view wx:if="{{_operation&& stutas}}" class="catalog-operation-banner">
   <view class="commodity">
     <view wx:if="{{!checkall}}" bindtap="checkAll" class="commodity-item operation-text">
       全选
@@ -29,35 +32,40 @@
       已选择{{checkedNum}}张照片
     </view>
     <view bindtap="cancleCheck" class="commodity-item operation-text">
-      取消
+      返回
     </view>
   </view>
 </view>
 <view>
-  <view class="catalog-list">
+  <view class="catalog-list-exhibition">
     <block wx:for="{{imageList}}" wx:for-item="image" wx:for-index="idx" wx:key="">
-      <view class="catalog-item">
-        <image class="catalog-list-megia" src="{{image.url}}" data-src="{{image.url}}" data-index="{{idx}}" bindtap="checkImg"></image>
+      <view class="catalog-item {{image.activeImg}}">
+        <!-- <image class="catalog-list-megia" src="{{image.url}}" data-src="{{image.url}}" data-index="{{idx}}" bindtap="multipleTap" bindlongtap="longTap" bindtouchstart="touchStart" bindtouchend="touchEnd"></image> -->
+        <image mode="aspectFill" class="catalog-list-megia" src="{{image.url}}" data-src="{{image.url}}" data-index="{{idx}}" bindtap="checkImg"></image>
         <image wx:if="{{image.checked}}" class="catalog-list-check" src="../../image/check.png"></image>
       </view>
     </block>
   </view>
+  <image wx:if="{{nodata}}" class="nodata-icon" src="../../image/nodata.jpg"></image>
+  <text wx:if="{{!stutas}}" class="noStutas">文件夹不存在</text>
+</view>
+<view class='floating-operation'>
+  <image bindtap="goHome" class="catalog-list-icon catalog-list-icon-f" src="../../image/homebtn.png" data-src="{{image}}"></image>
+  <image bindtap="dynamics" wx:if="{{!operation&&authority}}" class="catalog-list-icon" src="../../image/addbtn.png" data-src="{{image}}"></image>
+</view>
 
-</view>
-<view class="ui-bottom-fixed" wx:if="{{!operation}}">
-  <view class="catalog-dynamics" bindtap="dynamics">
-    <image class="catalog-list-megia" src="../../image/addbtn.png" data-src="{{image}}"></image>
-  </view>
-</view>
 <view animation="{{bottomAnimationData}}" class="commodity_attr_box bottom-commodity" wx:if="{{showModalStatus}}">
-  <view class="commodity"> 
-    <view class="commodity-item bottom-icon">
+  <view class="commodity-center">
+    <view class="commodity-item bottom-icon" bindtap="downLoadFile">
       <image class="commodity-download" src="../../image/download.png"></image>
-      <text class="commodity-text">下载</text>  
+      <text class="commodity-text">下载</text>
     </view>
-    <view class="commodity-item bottom-icon">
-    <image class="commodity-del" src="../../image/delete.png"></image>
-     <text class="commodity-text">删除</text>  
+    <view class="commodity-item bottom-icon" wx:if="{{authority}}" bindtap='deleteFile'>
+      <image class="commodity-del" src="../../image/delete.png"></image>
+      <text class="commodity-text">删除</text>
     </view>
   </view>
 </view>
+<loading hidden="{{showLoading}}">
+  {{loadingText}}
+</loading>

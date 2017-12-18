@@ -1,29 +1,26 @@
-<scroll-view scroll-y = true>
-   <view class='container-search'>
-<view class="search">
-<input placeholder-class="phcolor" class = 'input' bindinput="bindinput" placeholder="输入相册名称搜索" maxlength="16"/>
-</view>
-</view>
-<view class='container-folder'>
-  <view class='item-folder' wx:for="{{items}}" wx:key="" data-statu="{{item}}" bindtap='enterFolder' >
-    <image class="item-folder-img"  src="../../image/{{item.img}}"></image>
-    <text class='item-folder-name'>{{item.name}}</text>
-    <view class="item-folder-info">
-     <view class="item-folder-member">
-    <image class="kind-list-folder" src="../../image/group.png"></image>
-    <text class="item-folder-text">{{item.member}}</text>
-    </view>
-     <view class="item-folder-num">
-    <image class="kind-list-folder" src="../../image/image.png"></image>
-    <text class="item-folder-text">{{item.imagenum}}</text>
-    </view>
+<scroll-view>
+  <view class='container-search'>
+    <view class="search">
+      <image  class="search-icon" src="../../image/search.png"></image>
+      <input placeholder-class="phcolor" confirm-type="搜索" class='input' bindconfirm="inputSearch" placeholder="输入相册名称" maxlength="16" />
     </view>
   </view>
-</view>
-<view class="btn" bindtap="newfolder">
-  <view class='bottom-btn'>创建文件夹</view>
-</view>
+  <image wx:if="{{nodata}}" class="nodata-icon" src="../../image/nodata.jpg"></image>
+  <view class='container-folder'>
+    <view class='item-folder' wx:for="{{items}}" wx:key="" data-statu="{{item}}" bindtap='enterFolder'>
+      <image mode="aspectFill" class="item-folder-img" src="{{item.img}}"></image>
+      <view class="shared-icon" wx:if="{{item.shared}}"></view>
+      <text class="shared-icon-text" wx:if="{{item.shared}}"> {{item.shareCount}} </text>
+      <!-- <image class="shared-icon-img" wx:if="{{item.shared}}" src="../../image/shared.png"></image> -->
+      <view class='index-mask'>
+      </view>
+      <text class='item-folder-name'>{{item.name}}</text>
+    </view>
+  </view>
+  <view class="btn" bindtap="JumpToCreateFolder">
+    <view class='bottom-btn'>创建相册</view>
+  </view>
 </scroll-view>
-   <loading hidden="{{hidden}}">
-        正在刷新...
-    </loading>
+<loading hidden="{{hidden}}">
+  {{loadingText}}
+</loading>

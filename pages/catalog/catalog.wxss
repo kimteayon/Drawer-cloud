@@ -1,7 +1,86 @@
+.catalog-list-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+}
+.catalog-list-icon-f{
+  margin-bottom: 10px;
+}
+.floating-operation {
+  position: fixed;
+  right: 10px;
+  bottom: 40px;
+}
+
+.noStutas {
+  color: #ccc;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+.catalog-share {
+}
+
 .catalog-list-megia {
-  display: inline-flex;
+  display: block;
   width: 100%;
   height: 100%;
+}
+
+.catalog-list-home {
+  position: fixed;
+  display: block;
+  width: 48px;
+  height: 48px;
+  right: 10px;
+  bottom: 100px;
+}
+
+.catalog-share-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.catalog-delete-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.catalog-operation-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 65px;
+}
+
+.catalog-backup {
+  display: block;
+  position: absolute;
+  left: 20px;
+  color: #fff;
+}
+
+.catalog-banner-description-con {
+  width: 100%;
+  position: absolute;
+  display: block;
+}
+
+.catalog-banner-description {
+  color: #fff;
+  display: block;
+  width: 80%;
+  text-align: center;
+  margin: 30px auto;
 }
 
 .opreat-btn {
@@ -32,7 +111,7 @@
 }
 
 .catalog-list {
-  width: 100%;
+  width: 96%;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -53,7 +132,7 @@
 .catalog-banner-name {
   color: #fff;
   position: absolute;
-  bottom: 40px;
+  bottom: 10px;
   left: 10px;
 }
 
@@ -77,7 +156,7 @@
 .catalog-info {
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  right: 10px;
   text-align: left;
 }
 
@@ -124,15 +203,27 @@
 
 button {
   color: #fff !important;
-  background: #333 !important;
+  background: transparent !important;
   font-size: 12px !important;
+  outline: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: absolute;
+  right: 110px;
+  top: 10px;
+}
+
+button::after {
+  border: none !important;
 }
 
 .catalog-share {
-  position: absolute;
-  bottom: 5px;
-  right: 20px;
-  border-radius: 5px;
+  top: 10px;
+  right: 65px;
+}
+
+.activeImg {
+  border: 2px solid #2196f3;
 }
 
 .catalog-dynamics {
@@ -224,6 +315,15 @@ button {
   justify-content: space-between;
 }
 
+.commodity-center {
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: nowrap;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+}
+
 .commodity-item {
   text-align: center;
   color: #333;
@@ -242,22 +342,26 @@ button {
 .operation-text {
   color: #39f;
 }
-.bottom-icon{
+
+.bottom-icon {
   width: 40%;
   height: 60px;
 }
-.commodity-download{
-  width: 24px;
-  height: 24px;
+
+.commodity-download {
+  width: 20px;
+  height: 20px;
   display: block;
   margin: 5px auto;
 }
-.commodity-del{
-  width:20px;
-  height: 24px;
-   display: block;
+
+.commodity-del {
+  width: 20px;
+  height: 20px;
+  display: block;
   margin: 5px auto;
 }
-.commodity-text{
+
+.commodity-text {
   display: block;
 }

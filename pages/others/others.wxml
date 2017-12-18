@@ -1,0 +1,34 @@
+<scroll-view>
+  <view class='container-search'>
+    <view class="search">
+      <image class="search-icon" src="../../image/search.png"></image>
+      <input placeholder-class="phcolor" confirm-type="搜索" class='input' bindconfirm="inputSearch" placeholder="输入相册名称" maxlength="16" />
+    </view>
+  </view>
+  <image wx:if="{{nodata}}" class="nodata-icon" src="../../image/nodata.jpg"></image>
+  <view class='container-folder'>
+    <view class='item-folder' wx:for="{{items}}" wx:key="" data-statu="{{item}}" bindtap='enterFolder'>
+      <image mode="aspectFill" class="item-folder-img" src="{{item.img}}"></image>
+      <view class="shared-icon" wx:if="{{!item.owner}}"></view>
+       <text class="shared-icon-text" wx:if="{{item.shared}}"> {{item.shareCount}} </text>
+      <!-- <image class="shared-icon-img" wx:if="{{!item.owner}}" src="../../image/shared.png"></image> -->
+      <view class='index-mask'>
+      </view>
+      <text class='item-folder-name'>{{item.name}}</text>
+      <view class='item-folder-share'>
+        <!-- <text wx:if="{{item.ownername}}" class="item-folder-share-info">创始人</text> -->
+        <image class="item-folder-share-img" src="{{item.ownerimg}}"></image>
+        <text class="item-folder-share-text">
+         {{item.ownername}}
+        </text>
+
+      </view>
+    </view>
+  </view>
+  <!-- <view class="btn" bindtap="JumpToCreateFolder">
+    <view class='bottom-btn'>创建相册</view>
+  </view> -->
+</scroll-view>
+<loading hidden="{{hidden}}">
+  {{loadingText}}
+</loading>

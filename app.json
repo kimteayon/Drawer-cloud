@@ -1,50 +1,44 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/catalog/catalog",
-    "pages/my/my",
-    "pages/new/new",
-    "pages/setup/setup",
+    "pages/personalcenter/personalcenter",
+    "pages/createfolder/createfolder",
     "pages/pushdymics/pushdymics",
-    "pages/deletemember/deletemember"
+    "pages/deletemember/deletemember",
+    "pages/others/others"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#333",
-    "navigationBarTitleText": "抽屉",
+    "navigationBarTitleText": "抽屉云",
     "navigationBarTextStyle": "#fff"
   },
   "tabBar": {
-    "color": "#999",
-    "selectedColor": "#3399ff",
+    "color": "#333",
+    "selectedColor": "#2196F3",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "image/icon1.png",
-        "selectedIconPath": "image/icon2.png",
+        "iconPath": "image/drawer_.png",
+        "selectedIconPath": "image/drawer_active.png",
         "text": "抽屉云"
       },
       {
-        "pagePath": "pages/index/index",
-        "iconPath": "image/icon_component_HL.png",
-        "selectedIconPath": "image/icon_component.png",
-        "text": "发现"
+        "pagePath": "pages/others/others",
+        "iconPath": "image/share_.png",
+        "selectedIconPath": "image/share_active.png",
+        "text": "分享相册"
       },
       {
-        "pagePath": "pages/index/index",
-        "iconPath": "image/icon_component_HL.png",
-        "selectedIconPath": "image/icon_component.png",
-        "text": "任务"
-      },
-      {
-        "pagePath": "pages/my/my",
-        "iconPath": "image/i_HL.png",
-        "selectedIconPath": "image/i.png",
+        "pagePath": "pages/personalcenter/personalcenter",
+        "iconPath": "image/i.png",
+        "selectedIconPath": "image/i_active.png",
         "text": "我"
       }
     ]
   }
 }
+

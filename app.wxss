@@ -5,13 +5,40 @@
   display: inline-block;
   vertical-align: middle;
 }
-
 .item-folder-text {
   font-size: 12px;
   color: #fff;
   margin-right: 10px;
 }
-
+.up-catalog{
+  width: 100%;
+  margin: 0 auto;
+}
+.catalog-list {
+  margin-left: 3%;
+  background: #fff;
+  margin-top: 5px;
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  height: 100%;
+}
+.catalog-list-exhibition{
+  background: #fff;
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  height: 100%;
+}
+.nodata-icon {
+  width: 144px;
+  height: 144px;
+  display: block;
+  margin: 50px auto;
+}
 .ui-tab {
   width: 100%;
   height: 100rpx;
@@ -26,64 +53,89 @@
   color: #999;
   font-size: 28rpx;
 }
+
 .search {
+  display: block;
   height: 25px;
-  width: 92%;
+  width: 96%;
   background: #e5e5e5;
   border-radius: 2px;
-  padding: 0px 10px;
-  margin: 3px auto;
+  margin: 0 auto;
+  margin-top: 5px;
   border: 1px solid #e5e5e5;
-  
 }
+
 .input {
   display: inline-block;
   font-size: 12px;
   width: 80%;
-  line-height: 25px;
-  height: 25px;
+  line-height: 26px;
+  height: 26px;
   color: #333;
-  vertical-align: middle;
+  vertical-align: top;
 }
+
 .btn {
   position: fixed;
-  bottom: 0;
+  left: 2%;
   margin: 0 auto;
   text-align: center;
   width: 100%;
   overflow: hidden;
   color: #fff;
+  bottom: 10px;
 }
-.bottom-btn{
+.btn-this {
+  position: fixed;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  color: #fff;
+  bottom: 10px;
+}
+
+.bottom-btn {
   font-size: 16px;
   height: 40px;
   line-height: 40px;
-  background: #333;
-  width: 100%;
+  background: #2196F3;
+  width: 96%;
+  display: block;
+  border-radius: 2px;
 }
-.bottom-btn-small{
+.bottom-btn-small {
   font-size: 14px;
-  height: 25px;
-  line-height: 25px;
-  width: 90%;
-  border-radius: 10px;
-  margin: 10px auto;
-  background: #333;
+  height: 40px;
+  line-height: 40px;
+  width: 96%;
+  border-radius: 5px;
+  margin: 20px auto;
+  background: #2196F3;
+}
+.index-mask {
+  height: 200px;
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.6) 90%, rgba(0, 0, 0, 0.8) 100%);
 }
 .backcolor {
   background: #e5e5e5;
   height: 5px;
   width: 100%;
 }
-.textarea{
+
+.textarea {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   width: 90%;
-  line-height: 12px;
-  height: 50px;
+  line-height: 14px;
+  height: 100px;
   color: #333;
   margin: 0 auto;
+  margin-left: 30px;
 }
+
 .active {
   line-height: 100rpx;
   text-align: center;
@@ -103,7 +155,8 @@
   text-align: center;
   line-height: 200px;
 }
-.ui-bottom-fixed{
+
+.ui-bottom-fixed {
   width: 100%;
   position: fixed;
   bottom: 10px;

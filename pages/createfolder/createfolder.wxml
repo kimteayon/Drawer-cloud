@@ -1,0 +1,26 @@
+<view class="backcolor">
+</view>
+<view class="input-section">
+  <input class='input' bindinput="bindinput" value="{{folderName}}" placeholder="相册名称" maxlength="16" auto-focus/>
+  <text class='text-max'>{{textlength}}/16</text>
+</view>
+ <view class='up-catalog'>
+      <view class="catalog-list">
+  <view class='catalog-item-plus' bindtap="chooseImage">
+    <image class="catalog-plus-img" src="../../image/plus.png"></image>
+  </view>
+  <block wx:for="{{imageList}}" wx:for-item="image" wx:for-index="idx" wx:key="">
+    <view class="catalog-item">
+      <image mode="aspectFill"  class="catalog-list-megia" src="{{image}}" data-index="{{idx}}"></image>
+      <image class="catalog-deletephoto-icon"  src="../../image/deletephoto.png"   data-index="{{idx}}" bindtap="deleteUploadImg" ></image>
+    </view>
+  </block>
+</view>
+  </view>
+<view class="btn-this">
+  <view class='bottom-btn-small' wx:if="{{!disabled}}" bindtap="creatFolder">创建</view>
+  <view class='bottom-btn-small noclick' wx:if="{{disabled}}" >创建</view>
+</view>
+<loading hidden="{{hidden}}">
+  创建中...
+</loading>

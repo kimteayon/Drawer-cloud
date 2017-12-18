@@ -3,43 +3,35 @@
   width: 100%;
   height: 100%;
 }
-
-
-
+.catalog-deletephoto-icon {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  top: -4px;
+  right: -3px;
+}
 page {
   height: 100%;
 }
-
 .catalog-item {
   width: 25%;
   height: 168rpx;
   display: inline-flex;
   border: 1px solid #fff;
   box-sizing: border-box;
+  position: relative;
 }
-
 .catalog-plus-img {
   width: 68rpx;
   height: 68rpx;
   margin: auto auto;
 }
-
-
-
 .catalog-item-plus {
   width: 25%;
   height: 168rpx;
   display: inline-flex;
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
-}
-
-.catalog-list {
-  background: #fff;
-  margin-top: 5px;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  height: 100%;
 }

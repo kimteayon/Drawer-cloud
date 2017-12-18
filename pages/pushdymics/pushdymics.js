@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var HTTP = require('../../servers.js');
 var config = require('../../config.js');
 const app = getApp()
@@ -28,6 +26,13 @@ Page({
       }
     })
   },
+  deleteUploadImg: function (e) {
+    var uploadImgs = this.data.imageList;
+    uploadImgs.splice(e.target.dataset.index, 1);
+    this.setData({
+      imageList: uploadImgs
+    })
+  },
   startpush: function () {
     var self = this;
     this.setData({
@@ -37,10 +42,15 @@ Page({
       this.setData({
         hidden: true
       })
-      console.log(res);
-    }, () => { })
-
-    
+      wx.setStorageSync('folderId', this.data.id);
+      wx.navigateBack();
+    }, (err) => {
+      wx.showToast({
+        title: '上传照片失败',
+        image: '../../image/image.png',
+        duration: 2000
+      })
+    })
   },
   onLoad: function (options) {
     var self = this;
@@ -53,5 +63,6 @@ Page({
         })
       }
     })
+   
   }
 })

@@ -4,54 +4,61 @@ var app = getApp()
 Page({
   data: {
     items: [],
-    startX: 0, //开始坐标
-    startY: 0,
-    showModalStatus: false,
-    hidden: true
+    nodata: false,
+    hidden: true,
+    loadingText: '加载中...'
   },
-  powerDrawer: function (e) {
-    var currentStatu = e.currentTarget.dataset.statu;
-    this.util(currentStatu, e)
-  },
-  newfolder: function (e) {
+  JumpToCreateFolder: function (e) {
     wx.navigateTo({
-      url: '../new/new'
+      url: '../createfolder/createfolder'
     })
   },
   onPullDownRefresh: function (e) {
+    // this.setData({
+    //   hidden: false
+    // })
+  },
+  enterFolder: function (e) {
+    wx.setStorageSync('folderaId', e.currentTarget.dataset.statu.id);
+    wx.navigateTo({
+      url: '../catalog/catalog?id=' + e.currentTarget.dataset.statu.id
+    })
+  },
+  onShow: function () {
+    var items = [];
     this.setData({
       hidden: false
     })
-  },
-  enterFolder: function (e) {
-    wx.navigateTo({
-      url: '../catalog/catalog?id=' + e.currentTarget.dataset.statu.id + '&name=' + e.currentTarget.dataset.statu.name + '&img=' + e.currentTarget.dataset.statu.img + '&member=' + e.currentTarget.dataset.statu.member + '&imagenum=' + e.currentTarget.dataset.statu.imagenum
-    })
-  },
-  onLoad: function () {
-    var items = [];
-    HTTP.get(config.creatFolder).then((res) => {
-      res.forEach((d, i) => {
-        items.push({ id: d._id, name: d.name, img: '3.jpg', imagenum: 10, member: 2 })
-      })
+    HTTP.get(config.creatFolder + "?type=owner").then((res) => {
       this.setData({
-        items: items
+        hidden: true
+      })
+      res.forEach((d, i) => {
+        var shared = false;
+        if (d.shareCount > 0) {
+          shared = true
+        }
+        items.push({ shared: shared, id: d._id, name: d.name, shareCount: d.shareCount, img: config.staticHost + d.cover, imagenum: d.photoCount, member: 2 })
+      })
+      var nodata = false;
+      var length = items.length;
+      if (length == 0) {
+        nodata = true;
+      }
+      this.setData({
+        items: items.reverse(),
+        nodata: nodata
       })
     }, () => { })
-    this.data.items = [
-      { id: 1, name: '圣诞狂欢', img: '3.jpg', imagenum: 10, member: 2 },
-      { id: 2, name: '旅行', img: '2.jpg', imagenum: 23, member: 4 },
-      { id: 3, name: '体育', img: '1.jpg', imagenum: 15, member: 6 },
-      { id: 4, name: '校园', img: '4.jpg', imagenum: 210, member: 12 }
-    ]
     app.globalData.items = this.data.items;
+  },
+  onLoad: function () {
+
 
   },
   onShareAppMessage: function (res) {
     var that = this;
     if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
     }
     return {
       title: app.globalData.userInfo.nickName + '邀请你加入抽屉云',
@@ -63,5 +70,37 @@ Page({
         // 转发失败
       }
     }
+  },
+  inputSearch: function (res) {
+    this.setData({
+      loadingText: '正在搜索...',
+      hidden: false,
+    })
+    var searchText = res.detail.value;
+    var items = [];
+    HTTP.get(config.creatFolder + "?type=owner?name=" + searchText).then((res) => {
+      this.setData({
+        hidden: true
+      })
+      var shared = false;
+      if (d.shareCount > 0) {
+        shared = true
+      }
+      res.forEach((d, i) => {
+        items.push({ id: d._id, shared: shared, shareCount: d.shareCount, name: d.name, img: config.staticHost + d.cover, imagenum: d.photoCount, member: 2 })
+      })
+      var nodata = false;
+      var length = items.length;
+      if (length == 0) {
+        nodata = true;
+      }
+      this.setData({
+        items: items.reverse(),
+        nodata: nodata
+      })
+    }, (err) => {
+
+    })
   }
+
 })
